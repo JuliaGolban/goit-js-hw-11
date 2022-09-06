@@ -32,6 +32,7 @@ https://user-images.githubusercontent.com/17479434/125040406-49a6f600-e0a0-11eb-
 Форма спочатку міститья в HTML документі. Користувач буде вводити рядок для
 пошуку у текстове поле, а по сабміту форми необхідно виконувати HTTP-запит.
 
+```json
 <form class="search-form" id="search-form">
   <input
     type="text"
@@ -41,6 +42,7 @@ https://user-images.githubusercontent.com/17479434/125040406-49a6f600-e0a0-11eb-
   />
   <button type="submit">Search</button>
 </form>
+```
 
 ### HTTP-запити
 
@@ -81,12 +83,15 @@ https://user-images.githubusercontent.com/17479434/125040406-49a6f600-e0a0-11eb-
 рендерити розмітку карток зображень. Під час пошуку за новим ключовим словом
 необхідно повністю очищати вміст галереї, щоб не змішувати результати.
 
+```json
 <div class="gallery">
   <!-- Картки зображень -->
 </div>
+```
 
 Шаблон розмітки картки одного зображення для галереї.
 
+```json
 <div class="photo-card">
   <img src="" alt="" loading="lazy" />
   <div class="info">
@@ -104,6 +109,7 @@ https://user-images.githubusercontent.com/17479434/125040406-49a6f600-e0a0-11eb-
     </p>
   </div>
 </div>
+```
 
 ### Пагінація
 
@@ -119,7 +125,9 @@ HTML документ вже містить розмітку кнопки, по 
 запит за наступною групою зображень і додавати розмітку до вже існуючих
 елементів галереї.
 
+```json
 <button type="button" class="load-more">Load more</button>
+```
 
 - В початковому стані кнопка повинна бути прихована.
 - Після першого запиту кнопка з'являється в інтерфейсі під галереєю.

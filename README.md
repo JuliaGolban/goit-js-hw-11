@@ -31,6 +31,7 @@ https://user-images.githubusercontent.com/17479434/125040406-49a6f600-e0a0-11eb-
 The form is originally in the HTML document. The user will enter a search string
 in the text field, and when submitting the form, an HTTP request must be made.
 
+```json
 <form class="search-form" id="search-form">
   <input
     type="text"
@@ -40,6 +41,7 @@ in the text field, and when submitting the form, an HTTP request must be made.
   />
   <button type="submit">Search</button>
 </form>
+```
 
 ### HTTP requests
 
@@ -76,12 +78,15 @@ The `div.gallery` element is originally in the HTML document, and the markup of
 the image cards needs to be rendered into it. When searching with a new keyword,
 you should completely clear the gallery content to avoid confusing results.
 
+```json
 <div class="gallery">
   <!-- Image cards -->
 </div>
+```
 
 Single image card markup template for the gallery.
 
+```json
 <div class="photo-card">
   <img src="" alt="" loading="lazy" />
   <div class="info">
@@ -99,6 +104,7 @@ Single image card markup template for the gallery.
     </p>
   </div>
 </div>
+```
 
 ### Pagination
 
@@ -114,7 +120,9 @@ The HTML document already has the markup of the button used to execute the
 request for the next group of images and add markup to the already existing
 gallery items.
 
+```json
 <button type="button" class="load-more">Load more</button>
+```
 
 - Initially, the button must be hidden.
 - After the first request, the button appears in the interface under the
@@ -164,7 +172,6 @@ next group of images. Here is a hint code for you. Figure it out for yourself.
 const { height: cardHeight } = document
    .querySelector(".gallery")
    .firstElementChild.getBoundingClientRect();
-
 window.scrollBy({
    top: cardHeight * 2,
    behavior: "smooth",
