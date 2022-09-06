@@ -158,7 +158,7 @@ Add the display of large images with the
 In order to add the CSS code of the library to the project, you need to add one
 more import, aside from the one described in the documentation.
 
-````json
+```json
 // Described in documentation
 import SimpleLightbox from "simplelightbox";
 //Additional styles import
@@ -176,7 +176,7 @@ window.scrollBy({
    top: cardHeight * 2,
    behavior: "smooth",
    });
-````
+```
 
 ### Infinite scrolling
 
