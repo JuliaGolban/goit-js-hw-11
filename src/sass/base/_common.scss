@@ -1,0 +1,13 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family-main);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--color-background-main);
+    color: var(--color-text-main);
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+}

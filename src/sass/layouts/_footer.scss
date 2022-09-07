@@ -1,0 +1,12 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100vw;
+
+    &__container {
+        width: 100%;
+        padding-right: 15px;
+        padding-bottom: 15px;
+    }
+}

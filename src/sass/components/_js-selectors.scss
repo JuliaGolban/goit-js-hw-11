@@ -1,0 +1,8 @@
+.no-scroll {
+    overflow: hidden;
+}
+
+.js-no-transparency {
+    transition: backdrop-filter var(--animation);
+    backdrop-filter: blur(10px);
+}

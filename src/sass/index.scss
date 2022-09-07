@@ -1,1 +1,14 @@
-@import './common';
+@import '~node_modules/modern-normalize/modern-normalize.css';
+@import './utils/variables';
+@import './base/common';
+@import './base/reset';
+@import './base/container';
+@import './components/js-selectors';
+@import './components/scroll-to-top';
+@import './components/button';
+@import './components/visually-hidden';
+@import './components/form';
+@import './layouts/header';
+@import './layouts/main';
+@import './layouts/gallery';
+@import './layouts/footer';
