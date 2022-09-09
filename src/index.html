@@ -5,7 +5,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Homework 11</title>
-  <link rel="stylesheet" href="./sass/index.scss" />
 </head>
 
 <body>
@@ -21,6 +20,7 @@
       </form>
     </div>
   </header>
+
   <main id="main">
     <section class="section">
       <div class="container">
@@ -29,15 +29,18 @@
         <button type="button" class="load-more btn">Load more</button>
       </div>
     </section>
+
+    <div class="fix-down">
+      <a class="scroll-to-top" href="#main">
+        <svg class="arrow-top" width="20" height="20">
+          <use href="./images/sprite.svg#arrow-up"></use>
+        </svg>
+      </a>
+    </div>
   </main>
-  <footer class="footer"></footer>
-  <div class="fix-down">
-    <a class="scroll-to-top" href="#main">
-      <svg class="arrow-top" width="20" height="20">
-        <use href="./images/sprite.svg#arrow-up"></use>
-      </svg>
-    </a>
-  </div>
+
+  <footer id="footer"></footer>
+
   <script type="module" src="./index.js"></script>
 </body>
 

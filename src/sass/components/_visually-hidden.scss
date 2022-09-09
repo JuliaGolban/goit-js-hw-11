@@ -12,3 +12,8 @@
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
 }
+
+.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+}

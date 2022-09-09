@@ -1,21 +1,28 @@
-// === Libraries ===
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import axios from 'axios';
+import './sass/index.scss';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import 'simplelightbox/dist/simple-lightbox.min.js';
-// === API Service===
-import { fetchPhotoCards } from './js/apiService';
-// === ===
+import fetchPhotoCards from './js/api-service';
 import getRefs from './js/getRefs';
 import {
   createMarkupPhotoCards,
   clearMarkupPhotoCards,
-} from './js/markupPhotoCards';
-import scroll from './js/scrollByPage';
+} from './js/markup-cards';
+import {
+  onFetchError,
+  onFinishPhotoCards,
+  onTotalPhotoCards,
+} from './js/notify-messages';
+import scroll from './js/scroll-to-top';
 
 const refs = getRefs();
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
+
 refs.searchForm.addEventListener('submit', onSearch);
+// refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
 function onSearch(e) {
   e.preventDefault();
@@ -23,28 +30,15 @@ function onSearch(e) {
   const form = e.currentTarget;
   const searchQuery = form.elements.searchQuery.value.trim();
 
-  //   debugger;
   clearMarkupPhotoCards();
-
   if (!searchQuery) {
     return;
   }
-
-  fetchPhotoCards(searchQuery).then(createMarkupPhotoCards).catch(onFetchError);
+  fetchPhotoCards(searchQuery).then(renderSearchQuery).catch(onFetchError);
 }
 
-function onFetchError(error) {
-  return Notify.failure(
-    'Sorry, there are no images matching your search query. Please try again.'
-  );
-}
-
-function onFinishPhotoCards() {
-  return Notify.info(
-    "We're sorry, but you've reached the end of search results."
-  );
-}
-
-function onTotalPhotoCards(totalHits) {
-  return Notify.success('Hooray! We found ${totalHits} images.');
+function renderSearchQuery(data) {
+  createMarkupPhotoCards(data);
+  onTotalPhotoCards(data);
+  lightbox.refresh();
 }

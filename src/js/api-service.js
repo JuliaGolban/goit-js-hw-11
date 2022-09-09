@@ -1,3 +1,5 @@
+const axios = require('axios').default;
+
 const BASE_URL = 'https://pixabay.com/api/';
 const API_KEY = '29751149-7f03b7bad417db024d5002aea';
 
@@ -5,9 +7,11 @@ const searchParams = new URLSearchParams({
   image_type: 'photo',
   orientation: 'horizontal',
   safesearch: 'true',
+  //   page: 1,
+  //   per_page: 40,
 });
 
-function fetchPhotoCards(q) {
+export default function fetchPhotoCards(q) {
   return fetch(`${BASE_URL}?key=${API_KEY}&q=${q}&${searchParams}`).then(
     res => {
       if (!res.ok) {
@@ -17,8 +21,3 @@ function fetchPhotoCards(q) {
     }
   );
 }
-
-export { fetchPhotoCards };
-
-let page = 1;
-let per_page = 40;
