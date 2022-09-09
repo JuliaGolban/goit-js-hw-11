@@ -13,32 +13,31 @@
     <div class="header__container container">
       <form class="search-form" id="search-form">
         <input class="search-form__input" type="text" name="searchQuery" autocomplete="off"
-          placeholder="Search images..." />
-        <button type="submit" class="search-form__btn">
+          placeholder="Search images..." aria-label="Search field" />
+        <button type="submit" class="search-form__submit" aria-label="Start search">
           <svg class="search-form__icon" width="15" height="15">
             <use href="./images/sprite.svg#search"></use>
           </svg></button>
       </form>
     </div>
   </header>
-  <main class="main">
-    <div class="main__container container">
-      <h1 class="main__title visually-hidden">Gallery</h1>
-      <div class="gallery">
-        <ul class="gallery__list list"></ul>
+  <main id="main">
+    <section class="section">
+      <div class="container">
+        <h1 class="main__title visually-hidden">Gallery</h1>
+        <div class="gallery"></div>
+        <button type="button" class="load-more btn">Load more</button>
       </div>
-      <button type="button" class="load-more btn">Load more</button>
-    </div>
+    </section>
   </main>
-  <footer class="footer">
-    <div class="footer__container container">
-      <a class="scroll-to-top" href="#header">
-        <svg class="arrow-top" width="20" height="20">
-          <use href="./images/sprite.svg#arrow-up"></use>
-        </svg>
-      </a>
-    </div>
-  </footer>
+  <footer class="footer"></footer>
+  <div class="fix-down">
+    <a class="scroll-to-top" href="#main">
+      <svg class="arrow-top" width="20" height="20">
+        <use href="./images/sprite.svg#arrow-up"></use>
+      </svg>
+    </a>
+  </div>
   <script type="module" src="./index.js"></script>
 </body>
 
