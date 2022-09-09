@@ -8,12 +8,19 @@
     width: 25px;
     height: 25px;
 
-    background-color: rgba(75, 92, 165, 0.2);
+    background-color: transparent;
     border: 1px solid var(--color-accent);
     border-radius: 50%;
     cursor: pointer;
 
+    transition: transform var(--animation), background-color var(--animation);
     animation: slide-top 1s linear 2s infinite alternate both;
+
+    &:hover,
+    &:focus {
+        transform: scale(1.05);
+        background-color: rgba(75, 92, 165, 0.2);
+    }
 }
 
 .arrow-top {

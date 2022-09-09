@@ -3,12 +3,11 @@
 @import './base/common';
 @import './base/reset';
 @import './base/container';
-@import './components/js-selectors';
+@import './base/section';
 @import './components/scroll-to-top';
+@import './components/fix-down';
 @import './components/button';
 @import './components/visually-hidden';
 @import './components/form';
 @import './layouts/header';
-@import './layouts/main';
 @import './layouts/gallery';
-@import './layouts/footer';
