@@ -18,6 +18,10 @@
         transform: scale(1.05);
     }
 
+    &__link {
+        cursor: zoom-in;
+    }
+
     &__info {
         display: flex;
         width: 240px;

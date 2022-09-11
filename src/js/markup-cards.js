@@ -14,7 +14,7 @@ function createMarkupPhotoCards(data) {
         downloads,
       }) => {
         return `<div class="photo-card">
-      <a href="${largeImageURL}">
+      <a class="photo-card__link" href="${largeImageURL}">
         <img class="photo-card__img" src="${webformatURL}" alt="${tags}" 
             loading="lazy" width="240" height="170"/></a>
       <div class="photo-card__info">
