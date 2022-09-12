@@ -4,10 +4,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 import 'simplelightbox/dist/simple-lightbox.min.js';
 import getRefs from './js/getRefs';
 import ApiService from './js/api-service';
-import {
-  createMarkupPhotoCards,
-  clearMarkupPhotoCards,
-} from './js/markup-cards';
+import * as markup from './js/markup-cards';
 import * as notify from './js/notify-messages';
 import LoadMoreBtn from './js/load-more';
 import scroll from './js/scroll-to-top';
@@ -28,11 +25,7 @@ function onSearch(e) {
 
   apiServise.query = e.currentTarget.elements.searchQuery.value;
 
-  if (!apiServise.query) {
-    return;
-  }
-
-  clearMarkupPhotoCards();
+  markup.clearMarkupPhotoCards();
   apiServise.resetPage();
   fetchPhotoCards();
   loadMoreBtn.show();
@@ -40,18 +33,27 @@ function onSearch(e) {
 
 function fetchPhotoCards() {
   loadMoreBtn.disable();
+
   apiServise
     .fetchPhotoCards()
+
     .then(data => {
+      if (data.total === 0 || !apiServise.query) {
+        loadMoreBtn.hide();
+        return notify.onFetchError();
+      }
       renderSearchQuery(data);
       informMessage(data);
       loadMoreBtn.enable();
     })
-    .catch(notify.onFetchError);
+
+    .catch(error => {
+      console.log(error);
+    });
 }
 
 function renderSearchQuery(data) {
-  createMarkupPhotoCards(data);
+  markup.createMarkupPhotoCards(data);
   lightbox.refresh();
 }
 

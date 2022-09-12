@@ -1,8 +1,8 @@
 import getRefs from './getRefs';
 const refs = getRefs();
 
-function createMarkupPhotoCards(data) {
-  const markup = data.hits
+function createMarkupPhotoCards({ hits }) {
+  const markup = hits
     .map(
       ({
         webformatURL,

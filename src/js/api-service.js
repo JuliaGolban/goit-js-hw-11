@@ -10,7 +10,7 @@ export default class ApiService {
     this.per_page = 40;
   }
 
-  fetchPhotoCards() {
+  async fetchPhotoCards() {
     const searchParams = new URLSearchParams({
       key: API_KEY,
       q: this.searchQuery,
@@ -20,17 +20,9 @@ export default class ApiService {
       page: this.page,
       per_page: this.per_page,
     });
-    return fetch(`${BASE_URL}?${searchParams}`)
-      .then(res => {
-        if (!res.ok) {
-          throw new Error(res.status);
-        }
-        return res.json();
-      })
-      .then(data => {
-        this.incrementPage();
-        return data;
-      });
+    const { data } = await axios.get(`${BASE_URL}?${searchParams}`);
+    this.incrementPage();
+    return data;
   }
 
   incrementPage() {
