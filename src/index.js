@@ -18,20 +18,18 @@ const lightbox = new SimpleLightbox('.gallery a', {
 const loadMoreBtn = new LoadMoreBtn();
 
 refs.searchForm.addEventListener('submit', onSearch);
-refs.loadMoreBtn.addEventListener('click', fetchPhotoCards);
+refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
-function onSearch(e) {
+loadMoreBtn.hide();
+
+async function onSearch(e) {
   e.preventDefault();
 
   apiServise.query = e.currentTarget.elements.searchQuery.value;
 
   markup.clearMarkupPhotoCards();
   apiServise.resetPage();
-  fetchPhotoCards();
-  loadMoreBtn.show();
-}
 
-async function fetchPhotoCards() {
   try {
     loadMoreBtn.disable();
     const data = await apiServise.fetchPhotoCards();
@@ -49,9 +47,24 @@ async function fetchPhotoCards() {
   }
 }
 
+async function onLoadMore() {
+  try {
+    loadMoreBtn.disable();
+
+    const data = await apiServise.fetchPhotoCards();
+
+    renderSearchQuery(data);
+    informMessage(data);
+    loadMoreBtn.enable();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 function renderSearchQuery(data) {
   markup.createMarkupPhotoCards(data);
   lightbox.refresh();
+  loadMoreBtn.show();
 }
 
 function informMessage(data) {
