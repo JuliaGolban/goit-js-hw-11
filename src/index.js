@@ -4,10 +4,10 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 import 'simplelightbox/dist/simple-lightbox.min.js';
 import getRefs from './js/getRefs';
 import ApiService from './js/api-service';
+import LoadMoreBtn from './js/load-more';
 import * as markup from './js/markup-cards';
 import * as notify from './js/notify-messages';
-import LoadMoreBtn from './js/load-more';
-import scroll from './js/scroll-to-top';
+import Scroll from './js/scroll';
 
 const refs = getRefs();
 const apiServise = new ApiService();
@@ -16,11 +16,19 @@ const lightbox = new SimpleLightbox('.gallery a', {
   captionDelay: 250,
 });
 const loadMoreBtn = new LoadMoreBtn();
+const scroll = new Scroll();
 
 refs.searchForm.addEventListener('submit', onSearch);
 refs.loadMoreBtn.addEventListener('click', onLoadMore);
+refs.scrollToTop.addEventListener('click', () => {
+  scroll.scrollUp();
+});
+document.addEventListener('scroll', () => {
+  scroll.handleScroll();
+});
 
 loadMoreBtn.hide();
+scroll.hide();
 
 async function onSearch(e) {
   e.preventDefault();

@@ -5,5 +5,6 @@ export default function getRefs() {
     loadMoreBtn: document.querySelector('[data-action="load-more"]'),
     loadMoreLabel: document.querySelector('.label'),
     loadMoreSpinner: document.querySelector('.spinner'),
+    scrollToTop: document.querySelector('.scroll-to-top'),
   };
 }
