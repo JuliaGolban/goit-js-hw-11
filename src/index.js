@@ -31,25 +31,22 @@ function onSearch(e) {
   loadMoreBtn.show();
 }
 
-function fetchPhotoCards() {
-  loadMoreBtn.disable();
+async function fetchPhotoCards() {
+  try {
+    loadMoreBtn.disable();
+    const data = await apiServise.fetchPhotoCards();
 
-  apiServise
-    .fetchPhotoCards()
+    if (data.total === 0 || !apiServise.query) {
+      loadMoreBtn.hide();
+      return notify.onFetchError();
+    }
 
-    .then(data => {
-      if (data.total === 0 || !apiServise.query) {
-        loadMoreBtn.hide();
-        return notify.onFetchError();
-      }
-      renderSearchQuery(data);
-      informMessage(data);
-      loadMoreBtn.enable();
-    })
-
-    .catch(error => {
-      console.log(error);
-    });
+    renderSearchQuery(data);
+    informMessage(data);
+    loadMoreBtn.enable();
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 function renderSearchQuery(data) {
