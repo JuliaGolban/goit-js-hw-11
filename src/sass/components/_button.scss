@@ -18,12 +18,13 @@
     cursor: pointer;
 
     transition: color var(--animation),
-        background-color var(--animation);
+        background-color var(--animation), box-shadow var(--animation);
 
     &:hover,
     &:focus,
     &:active {
         color: var(--color-text-white);
         background-color: rgba(75, 92, 165, 0.5);
+        box-shadow: 3px 5px 5px -2px rgba(75, 92, 165, 0.5) inset;
     }
 }
