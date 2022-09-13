@@ -2,12 +2,13 @@ import './sass/index.scss';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import 'simplelightbox/dist/simple-lightbox.min.js';
+import { Confirm } from 'notiflix/build/notiflix-confirm-aio';
 import getRefs from './js/getRefs';
 import ApiService from './js/api-service';
 import LoadMoreBtn from './js/load-more';
 import * as markup from './js/markup-cards';
-import * as notify from './js/notify-messages';
-import Scroll from './js/scroll';
+import NotifyMessages from './js/notify-messages';
+import Scroll from './js/scrollTo';
 
 const refs = getRefs();
 const apiServise = new ApiService();
@@ -15,20 +16,18 @@ const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
+const notify = new NotifyMessages();
 const loadMoreBtn = new LoadMoreBtn();
 const scroll = new Scroll();
 
 refs.searchForm.addEventListener('submit', onSearch);
 refs.loadMoreBtn.addEventListener('click', onLoadMore);
 refs.scrollToTop.addEventListener('click', () => {
-  scroll.scrollUp();
+  scroll.scrollToTop();
 });
 document.addEventListener('scroll', () => {
-  scroll.handleScroll();
+  scroll.handleScrollToTop();
 });
-
-loadMoreBtn.hide();
-scroll.hide();
 
 async function onSearch(e) {
   e.preventDefault();
@@ -39,11 +38,9 @@ async function onSearch(e) {
   apiServise.resetPage();
 
   try {
-    loadMoreBtn.disable();
     const data = await apiServise.fetchPhotoCards();
 
     if (data.total === 0 || !apiServise.query) {
-      loadMoreBtn.hide();
       return notify.onFetchError();
     }
 
@@ -77,7 +74,7 @@ function renderSearchQuery(data) {
 
 function informMessage(data) {
   if (apiServise.currentPage === 1) {
-    notify.onTotalPhotoCards(data);
+    notify.onTotalPhotoCards(data.totalHits);
   }
   if (
     apiServise.currentPage >= Math.ceil(data.totalHits / apiServise.per_page)
@@ -86,3 +83,34 @@ function informMessage(data) {
     notify.onFinishPhotoCards();
   }
 }
+
+// ==== infinite scroll ====
+
+Confirm.show(
+  'The method of viewing search',
+  'Do you want to use infinite scrolling?',
+  'Yes',
+  'No',
+  () => {
+    loadMoreBtn.hide();
+    function onEntry(entries) {
+      entries.forEach(async entry => {
+        if (entry.isIntersecting && apiServise.query) {
+          const data = await apiServise.fetchPhotoCards();
+
+          markup.createMarkupPhotoCards(data);
+          lightbox.refresh();
+          informMessage(data);
+        }
+      });
+    }
+    const options = {
+      rootMargin: '300px',
+    };
+    const observer = new IntersectionObserver(onEntry, options);
+
+    const sentinel = document.querySelector('#sentinel');
+    observer.observe(sentinel);
+  },
+  () => {}
+);

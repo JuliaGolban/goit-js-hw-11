@@ -3,6 +3,7 @@ const refs = getRefs();
 
 export default class Scroll {
   constructor() {}
+
   scrollBy() {
     const { height: cardHeight } =
       refs.gallery.firstElementChild.getBoundingClientRect();
@@ -12,23 +13,24 @@ export default class Scroll {
       behavior: 'smooth',
     });
   }
-  scrollUp() {
+
+  scrollToTop() {
     const start = refs.gallery.firstElementChild;
     return window.scrollTo({ top: start, behavior: 'smooth' });
   }
 
-  show() {
+  showScrollToTop() {
     refs.scrollToTop.classList.remove('is-hidden');
   }
 
-  hide() {
+  hideScrollToTop() {
     refs.scrollToTop.classList.add('is-hidden');
   }
 
-  handleScroll() {
+  handleScrollToTop() {
     const GOLDEN_RATIO = 0.5;
     document.documentElement.scrollTop > GOLDEN_RATIO
-      ? this.show()
-      : this.hide();
+      ? this.showScrollToTop()
+      : this.hideScrollToTop();
   }
 }
