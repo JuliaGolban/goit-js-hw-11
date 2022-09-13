@@ -1,6 +1,7 @@
 .gallery {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
     gap: 10px;
 }
@@ -20,6 +21,10 @@
 
     &__link {
         cursor: zoom-in;
+    }
+
+    &__img {
+        animation: spin 1s ease-in-out;
     }
 
     &__info {
