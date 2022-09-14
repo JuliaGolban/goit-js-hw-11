@@ -51,8 +51,16 @@ async function onSearch(e) {
             if (entry.isIntersecting && apiServise.query) {
               const data = await apiServise.fetchPhotoCards();
               createMarkupPhotoCards(data);
+              if (apiServise.currentPage === 2) {
+                notify.onTotalPhotoCards(data.totalHits);
+              }
+              if (
+                data.totalHits <=
+                (apiServise.currentPage - 1) * apiServise.per_page
+              ) {
+                notify.onFinishPhotoCards();
+              }
             }
-            getMessage(data);
           });
         };
         const options = {
