@@ -9,7 +9,6 @@ import {
 } from './js/markup-cards';
 import NotifyMessages from './js/notify-messages';
 import Scroll from './js/scrollTo';
-import onInfiniteScroll from './js/infinite-scroll';
 
 const refs = getRefs();
 const apiServise = new ApiService();
@@ -47,9 +46,20 @@ async function onSearch(e) {
       'Yes',
       'No',
       () => {
-        createMarkupPhotoCards(data);
-        getMessage(data);
-        onInfiniteScroll(data);
+        const onEntry = entries => {
+          entries.forEach(async entry => {
+            if (entry.isIntersecting && apiServise.query) {
+              const data = await apiServise.fetchPhotoCards();
+              createMarkupPhotoCards(data);
+            }
+            getMessage(data);
+          });
+        };
+        const options = {
+          rootMargin: '170px',
+        };
+        const observer = new IntersectionObserver(onEntry, options);
+        observer.observe(refs.sentinel);
       },
       () => {
         createMarkupPhotoCards(data);
@@ -66,9 +76,7 @@ async function onSearch(e) {
 async function onLoadMore() {
   try {
     loadMoreBtn.disable();
-
     const data = await apiServise.fetchPhotoCards();
-
     createMarkupPhotoCards(data);
     getMessage(data);
     loadMoreBtn.enable();
