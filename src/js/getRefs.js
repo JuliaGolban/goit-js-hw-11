@@ -6,5 +6,6 @@ export default function getRefs() {
     loadMoreLabel: document.querySelector('.label'),
     loadMoreSpinner: document.querySelector('.spinner'),
     scrollToTop: document.querySelector('.scroll-to-top'),
+    sentinel: document.querySelector('#sentinel'),
   };
 }

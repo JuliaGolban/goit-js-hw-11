@@ -1,5 +1,13 @@
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+import 'simplelightbox/dist/simple-lightbox.min.js';
 import getRefs from './getRefs';
+
 const refs = getRefs();
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
 
 function createMarkupPhotoCards({ hits }) {
   const markup = hits
@@ -43,8 +51,9 @@ function createMarkupPhotoCards({ hits }) {
       }
     )
     .join('');
-  // refs.gallery.innerHTML = markup;
+
   refs.gallery.insertAdjacentHTML('beforeend', markup);
+  lightbox.refresh();
 }
 
 function clearMarkupPhotoCards() {
