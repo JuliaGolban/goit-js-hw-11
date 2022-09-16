@@ -8,7 +8,13 @@
     border-bottom: 1px solid rgba(75, 92, 165, 0.4);
     box-shadow: 5px 5px 10px -2px rgba(75, 92, 165, 0.5);
 
-    &__container {
-        padding: 15px;
+    &-hide {
+        display: none;
+        transform: translateY(-62px);
+    }
+
+    &-show {
+        display: block;
+        transform: translateY(0);
     }
 }

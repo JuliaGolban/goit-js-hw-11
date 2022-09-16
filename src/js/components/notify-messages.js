@@ -21,6 +21,7 @@ export default class NotifyMessages {
 }
 
 Notify.init({
+  cssAnimationStyle: 'slide-out-elliptic-top-bck',
   info: {
     position: 'center-bottom',
   },

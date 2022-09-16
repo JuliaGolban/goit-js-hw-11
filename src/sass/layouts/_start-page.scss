@@ -1,0 +1,14 @@
+.title {
+    margin: 50px auto;
+}
+
+.list {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.item {
+    &:not(:last-child) {
+        margin-bottom: 20px;
+    }
+}

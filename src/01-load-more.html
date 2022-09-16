@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Load More button</title>
+</head>
+
+<body>
+    <header class="header" id="header">
+        <div class="header__container container">
+            <form class="search-form" id="search-form">
+                <input class="search-form__input" type="text" name="searchQuery" autocomplete="off"
+                    placeholder="Search images..." aria-label="Search field" />
+                <button type="submit" class="search-form__submit" aria-label="Start search">
+                    <svg class="search-form__icon" width="15" height="15">
+                        <use href="./images/sprite.svg#search"></use>
+                    </svg></button>
+            </form>
+        </div>
+    </header>
+
+    <main id="main">
+        <section class="section">
+            <div class="container">
+                <h1 class="title visually-hidden">Gallery</h1>
+                <div class="gallery"></div>
+
+                <button type="button" class="load-more btn is-hidden" data-action="load-more"><span
+                        class="spinner is-hidden" role="status" aria-hidden="true"></span><span class="label">Load
+                        more</span></button>
+            </div>
+        </section>
+
+        <button type="button" class="scroll-to-top is-hidden">
+            <svg class="arrow-top" width="20" height="20">
+                <use href="./images/sprite.svg#arrow-up"></use>
+            </svg>
+        </button>
+        <!-- <a href="index.html" class="back">Are you tired or change your mind about the way you view search?</a> -->
+    </main>
+
+    <script type="module" src="./js/01-load-more.js"></script>
+</body>
+
+</html>
