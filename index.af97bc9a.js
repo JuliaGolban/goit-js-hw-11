@@ -1,0 +1,2 @@
+({searchForm:document.querySelector("#search-form"),gallery:document.querySelector("div.gallery"),loadMoreBtn:document.querySelector('[data-action="load-more"]'),loadMoreLabel:document.querySelector(".label"),loadMoreSpinner:document.querySelector(".spinner"),scrollToTop:document.querySelector(".scroll-to-top"),sentinel:document.querySelector("#sentinel")}).searchForm.addEventListener("submit",(()=>alert("First, you need to choose how to view your search")));
+//# sourceMappingURL=index.af97bc9a.js.map
