@@ -50,5 +50,5 @@
 }
 
 @mixin font-size ($font-size) {
-    font-size: 100vw * ($font-size/320);
+    font-size: 100vw * ($font-size/480);
 }

@@ -2,6 +2,14 @@
     display: flex;
     align-items: center;
 
+    width: 10px;
+    height: 10px;
+
+    @include mq(tablet) {
+        width: 15px;
+        height: 15px;
+    }
+
     padding: 0;
 
     background-color: transparent;

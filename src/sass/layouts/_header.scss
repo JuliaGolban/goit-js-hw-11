@@ -34,10 +34,15 @@
 
     &__link {
         display: none;
-        font-size: 12px;
+        font-size: 8px;
+
+        @include mq(tablet) {
+            font-size: 12px;
+        }
 
         transform: translateX(150%);
-        transition: color var(--animation), transform var(--slow-animation);
+        transition: color var(--animation),
+        transform var(--slow-animation);
 
         &:hover,
         &:focus,

@@ -24,21 +24,37 @@
     }
 
     &__img {
+        width: 120px;
+        height: 85px;
         animation: spin 1s ease-in-out;
+
+        @include mq(tablet) {
+            width: 240px;
+            height: 170px;
+        }
     }
 
     &__info {
         display: flex;
-        width: 240px;
+        width: 120px;
         text-align: center;
-        font-size: 10px;
+        font-size: 6px;
+
+        @include mq(tablet) {
+            width: 240px;
+            font-size: 10px;
+        }
 
         &-item {
             position: relative;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            padding: 5px;
+            padding: 2px;
+
+            @include mq(tablet) {
+                padding: 5px;
+            }
         }
 
         &-item:not(:last-child):after {
@@ -53,7 +69,11 @@
         }
 
         &-amount {
-            font-size: 9px;
+            font-size: 5px;
+
+            @include mq(tablet) {
+                font-size: 9px;
+            }
         }
     }
 }

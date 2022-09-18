@@ -3,8 +3,13 @@
     display: flex;
     overflow: hidden;
 
-    width: 300px;
-    height: 30px;
+    width: 200px;
+    height: 20px;
+
+    @include mq(tablet) {
+        width: 300px;
+        height: 30px;
+    }
 
     background-color: var(--color-background-main);
     border: 1px solid var(--color-accent);
@@ -23,9 +28,13 @@
     &__input {
         width: 90%;
         height: 100%;
-        padding: 10px;
+        padding: 5px 10px;
+        font-size: 8px;
 
-        font-size: 12px;
+        @include mq(tablet) {
+            padding: 10px;
+            font-size: 12px;
+        }
 
         background-color: transparent;
         color: var(--color-text-main);
@@ -43,9 +52,19 @@
         position: absolute;
         top: 50%;
         right: 10px;
+        transform: translateY(-50%);
+
         display: flex;
         align-items: center;
-        transform: translateY(-50%);
+
+        width: 10px;
+        height: 10px;
+
+        @include mq(tablet) {
+            width: 15px;
+            height: 15px;
+        }
+
         padding: 0;
 
         background-color: transparent;
