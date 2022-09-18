@@ -10,6 +10,15 @@
 <body>
   <header class="header" id="header">
     <div class="header__container container">
+
+      <nav class="nav-toggler">
+        <a href="./load-more.html" class="nav-toggler__link" aria-label="Load more toggler">Load
+          more</a>
+        <button type="button" class="cog"><svg width="15" height="15">
+            <use href="./images/sprite.svg#cog"></use>
+          </svg></button>
+      </nav>
+
       <form class="search-form" id="search-form">
         <input class="search-form__input" type="text" name="searchQuery" autocomplete="off"
           placeholder="Search images..." aria-label="Search field" />
@@ -22,23 +31,27 @@
   </header>
 
   <main id="main">
-    <section class="section section-center">
-      <h1 class="title">Let's find whatever you want!..</h1>
-
-      <ul class="list">
-        <li class="item">If you like to manage your downloads and like gradual loading, you should click here => <a
-            class="link" href="01-load-more.html"><b>Load more!</b></a>
-        </li>
-        <li class="item">If you prefer infinite scrolling to frequent button presses, you should click here => <a
-            class="link" href="02-infinite-scroll.html"><b>Infinite scroll!</b></a></li>
-        <li class="item">If you can't choose right now, click here => <a class="link"
-            href="03-general.html"><b>General</b></a></li>
-      </ul>
-
+    <section class="section">
+      <div class="container">
+        <h1 class="title">Let's find whatever you want!..</h1>
+        <div class="gallery"></div>
+        <div id="sentinel"></div>
+        <button type="button" class="load-more btn is-hidden" data-action="load-more">
+          <svg class="spinner is-hidden" width="10" height="10">
+            <use href="./images/sprite.svg#spinner"></use>
+          </svg><span class="label">Load
+            more</span></button>
+      </div>
     </section>
+
+    <button type="button" class="scroll-to-top is-hidden">
+      <svg class="arrow-top" width="20" height="20">
+        <use href="./images/sprite.svg#arrow-up"></use>
+      </svg>
+    </button>
   </main>
 
-  <script type="module" src="./index.js"></script>
+  <script type="module" src="./js/index.js"></script>
 </body>
 
 </html>

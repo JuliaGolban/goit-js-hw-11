@@ -1,4 +1,5 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import Notiflix from 'notiflix';
 
 export default class NotifyMessages {
   constructor() {}
@@ -20,7 +21,7 @@ export default class NotifyMessages {
   }
 }
 
-Notify.init({
+Notiflix.Notify.init({
   cssAnimationStyle: 'slide-out-elliptic-top-bck',
   info: {
     position: 'center-bottom',

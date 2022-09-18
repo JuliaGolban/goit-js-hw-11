@@ -4,12 +4,21 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Infinite scroll</title>
+    <title>Load More button</title>
 </head>
 
 <body>
     <header class="header" id="header">
         <div class="header__container container">
+
+            <nav class="nav-toggler">
+                <a href="./index.html" class="nav-toggler__link" aria-label="Infinite scroll toggler">Infinite
+                    scroll</a>
+                <button type="button" class="cog"><svg width="15" height="15">
+                        <use href="./images/sprite.svg#cog"></use>
+                    </svg></button>
+            </nav>
+
             <form class="search-form" id="search-form">
                 <input class="search-form__input" type="text" name="searchQuery" autocomplete="off"
                     placeholder="Search images..." aria-label="Search field" />
@@ -24,9 +33,14 @@
     <main id="main">
         <section class="section">
             <div class="container">
-                <h1 class="title visually-hidden">Gallery</h1>
+                <h1 class="title">Let's find whatever you want!..</h1>
                 <div class="gallery"></div>
-                <div id="sentinel"></div>
+
+                <button type="button" class="load-more btn is-hidden" data-action="load-more">
+                    <svg class="spinner is-hidden" width="15" height="15">
+                        <use href="./images/sprite.svg#spinner"></use>
+                    </svg>
+                    <span class="label">Load more</span></button>
             </div>
         </section>
 
@@ -35,10 +49,10 @@
                 <use href="./images/sprite.svg#arrow-up"></use>
             </svg>
         </button>
-        <!-- <a href="index.html" class="back">Are you tired or change your mind about the way you view search?</a> -->
+
     </main>
 
-    <script type="module" src="./js/02-infinite-scroll.js"></script>
+    <script type="module" src="./js/load-more.js"></script>
 </body>
 
 </html>

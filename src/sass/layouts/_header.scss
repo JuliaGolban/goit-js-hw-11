@@ -8,6 +8,8 @@
     border-bottom: 1px solid rgba(75, 92, 165, 0.4);
     box-shadow: 5px 5px 10px -2px rgba(75, 92, 165, 0.5);
 
+    transition: transform var(--animation);
+
     &-hide {
         display: none;
         transform: translateY(-62px);
@@ -16,5 +18,39 @@
     &-show {
         display: block;
         transform: translateY(0);
+    }
+}
+
+.nav-toggler {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+    margin-right: 5px;
+    margin-left: -115px;
+
+    width: 100px;
+    height: auto;
+
+    &__link {
+        display: none;
+        font-size: 12px;
+
+        transform: translateX(150%);
+        transition: color var(--animation), transform var(--slow-animation);
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: var(--color-accent);
+        }
+
+        .nav-toggler:hover &,
+        .nav-toggler:focus &,
+        .nav-toggler:active & {
+            display: block;
+            transform: translateX(0);
+            animation: slide-out-left var(--slow-animation);
+        }
     }
 }

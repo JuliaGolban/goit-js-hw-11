@@ -1,14 +1,14 @@
 import '../sass/index.scss';
-import getRefs from './components/getRefs';
-import ApiService from './components/api-service';
-import LoadMoreBtn from './components/load-more-btn';
+import getRefs from './common/getRefs';
+import ApiService from './common/api-service';
+import LoadMoreBtn from './common/load-more-btn';
 import {
   createMarkupPhotoCards,
   clearMarkupPhotoCards,
-} from './components/markup-cards';
-import NotifyMessages from './components/notify-messages';
-import Scroll from './components/scrollTo';
-import HeaderOnScroll from './components/header-on-scroll';
+} from './common/markup-cards';
+import NotifyMessages from './common/notify-messages';
+import Scroll from './common/scrollTo';
+import './common/header-on-scroll';
 
 const refs = getRefs();
 const apiServise = new ApiService();
@@ -27,6 +27,7 @@ document.addEventListener('scroll', () => {
 
 async function onSearch(e) {
   e.preventDefault();
+  refs.title.classList.add('visually-hidden');
   apiServise.query = e.currentTarget.elements.searchQuery.value;
 
   clearMarkupPhotoCards();
@@ -41,6 +42,11 @@ async function onSearch(e) {
 
     createMarkupPhotoCards(data);
     notify.onTotalPhotoCards(data.totalHits);
+
+    if (data.totalHits <= apiServise.currentPage * apiServise.per_page) {
+      loadMoreBtn.hide();
+      return notify.onFinishPhotoCards();
+    }
 
     loadMoreBtn.show();
     loadMoreBtn.enable();
